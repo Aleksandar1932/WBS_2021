@@ -12,8 +12,19 @@ import static mk.ukim.finki.wbs.lab1.Utils.iterateAndPrintStatementIterator;
 import static mk.ukim.finki.wbs.lab1.Utils.readModel;
 
 class Hifm {
+    public static String hifmOntPrefix;
+    public static String hifmDataPrefix;
+    public static String rdfsPrefix;
+
+
+    public static void init(Model model) {
+        hifmOntPrefix = model.getNsPrefixURI("hifm-ont");
+        hifmDataPrefix = "http://purl.org/net/hifm/data#";
+        rdfsPrefix = model.getNsPrefixURI("rdfs");
+    }
+
     public static void printAllDrugs(Model model) {
-        SimpleSelector selector = new SelectorImpl(null, model.getProperty("http://www.w3.org/2000/01/rdf-schema#label"), (Object) null);
+        SimpleSelector selector = new SelectorImpl(null, model.getProperty(Hifm.rdfsPrefix + "label"), (Object) null);
         StmtIterator iterator = model.listStatements(selector);
 
         TreeSet<String> drugs = iterator.toList()
@@ -32,12 +43,12 @@ class Hifm {
 
     public static void printSimilarDrugs(Model model, String drugId) {
         System.out.printf("Printing similar drugs to %s%n", drugId);
-        SimpleSelector selector = new SimpleSelector(null, model.getProperty("http://purl.org/net/hifm/ontology#similarTo"), model.getResource(drugId));
+        SimpleSelector selector = new SimpleSelector(null, model.getProperty(Hifm.hifmOntPrefix + "similarTo"), model.getResource(drugId));
         StmtIterator iterator = model.listStatements(selector);
 
         Set<String> similarDrugs = iterator.toList().stream()
                 .map(statement -> statement.getSubject()
-                        .getProperty(new PropertyImpl("http://www.w3.org/2000/01/rdf-schema#label"))
+                        .getProperty(new PropertyImpl(Hifm.rdfsPrefix + "label"))
                         .getObject().toString()
                 )
                 .collect(Collectors.toSet());
@@ -46,7 +57,7 @@ class Hifm {
     }
 
     private static Double getPrice(Model model, String drugId) {
-        SimpleSelector selector = new SimpleSelector(model.getResource(drugId), model.getProperty("http://purl.org/net/hifm/ontology#refPriceWithVAT"), (Object) null);
+        SimpleSelector selector = new SimpleSelector(model.getResource(drugId), model.getProperty(Hifm.hifmOntPrefix + "refPriceWithVAT"), (Object) null);
         StmtIterator iterator = model.listStatements(selector);
 
         return iterator.toList().stream().map(statement -> (int) statement.getObject().asLiteral().getValue() * 1.0).findFirst().orElse(0.0);
@@ -55,7 +66,7 @@ class Hifm {
     public static void printPriceAndPriceOfSimilar(Model model, String drugId) {
         System.out.printf("Price of %s is %.2f\n\tPrice of similar:\n", drugId, getPrice(model, drugId));
 
-        SimpleSelector similarSelector = new SimpleSelector(null, model.getProperty("http://purl.org/net/hifm/ontology#similarTo"), model.getResource(drugId));
+        SimpleSelector similarSelector = new SimpleSelector(null, model.getProperty(Hifm.hifmOntPrefix + "similarTo"), model.getResource(drugId));
         StmtIterator similarIterator = model.listStatements(similarSelector);
 
         similarIterator.toList().forEach(statement -> {
@@ -68,11 +79,12 @@ class Hifm {
 public class HifmTest {
     public static void main(String[] args) {
         Model model = readModel("hifm-dataset.ttl", "TURTLE");
+        Hifm.init(model);
 
         Hifm.printAllDrugs(model);
-        Hifm.printAllRelations(model, "http://purl.org/net/hifm/data#975036");
-        Hifm.printSimilarDrugs(model, "http://purl.org/net/hifm/data#98167");
-        Hifm.printPriceAndPriceOfSimilar(model, "http://purl.org/net/hifm/data#98167");
+        Hifm.printAllRelations(model, Hifm.hifmDataPrefix + "975036");
+        Hifm.printSimilarDrugs(model, Hifm.hifmDataPrefix + "98167");
+        Hifm.printPriceAndPriceOfSimilar(model, Hifm.hifmDataPrefix + "98167");
     }
 
 }
