@@ -1,0 +1,23 @@
+<https://www.linkedin.com/in/ivanovskia/>
+        <http://www.w3.org/2001/vcard-rdf/3.0#EMAIL>
+                "aleksandar.ivanovski.1@students.finki.ukim.mk" ;
+        <http://www.w3.org/2001/vcard-rdf/3.0#FN>
+                "Aleksandar Ivanovski" ;
+        <http://www.w3.org/2001/vcard-rdf/3.0#Family>
+                "Ivanovski" ;
+        <http://www.w3.org/2001/vcard-rdf/3.0#Given>
+                "Aleksandar" ;
+        <http://www.w3.org/2001/vcard-rdf/3.0#NICKNAME>
+                "Aleks" , "Ace" ;
+        <http://www.w3.org/2001/vcard-rdf/3.0#ORG>
+                <https://finki.ukim.mk/> ;
+        <http://www.w3.org/2001/vcard-rdf/3.0#ROLE>
+                "Student" ;
+        <http://xmlns.com/foaf/0.1/birthday>
+                "23-04-2000" ;
+        <http://xmlns.com/foaf/0.1/gender>
+                "M" .
+
+<https://finki.ukim.mk/>
+        <http://www.w3.org/2001/vcard-rdf/3.0#N>
+                "Faculty of Computer Science and Engineering" .
