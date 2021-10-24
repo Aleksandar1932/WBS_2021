@@ -22,7 +22,7 @@ public class Utils {
             System.out.print(String.format(" %s ", predicate));
 
             if (object instanceof Resource) {
-                System.out.print(object);
+                System.out.print(object.asResource());
             } else {
                 System.out.print(((LiteralImpl) object).getValue());
             }
