@@ -4,6 +4,7 @@ import org.apache.jena.rdf.model.*;
 import org.apache.jena.rdf.model.impl.PropertyImpl;
 import org.apache.jena.rdf.model.impl.SelectorImpl;
 
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -14,12 +15,14 @@ import static mk.ukim.finki.wbs.lab1.Utils.readModel;
 class Hifm {
     public static String hifmOntPrefix;
     public static String hifmDataPrefix;
+    public static String drugBankPrefix;
     public static String rdfsPrefix;
 
 
     public static void init(Model model) {
         hifmOntPrefix = model.getNsPrefixURI("hifm-ont");
         hifmDataPrefix = "http://purl.org/net/hifm/data#";
+        drugBankPrefix = model.getNsPrefixURI("drugbank");
         rdfsPrefix = model.getNsPrefixURI("rdfs");
     }
 
@@ -46,9 +49,10 @@ class Hifm {
         SimpleSelector selector = new SimpleSelector(null, model.getProperty(Hifm.hifmOntPrefix + "similarTo"), model.getResource(drugId));
         StmtIterator iterator = model.listStatements(selector);
 
-        Set<String> similarDrugs = iterator.toList().stream()
+        List<Statement> similarDrugsList = iterator.toList();
+        Set<String> similarDrugs = similarDrugsList.stream()
                 .map(statement -> statement.getSubject()
-                        .getProperty(new PropertyImpl(Hifm.rdfsPrefix + "label"))
+                        .getProperty(new PropertyImpl(Hifm.drugBankPrefix + "brandName"))
                         .getObject().toString()
                 )
                 .collect(Collectors.toSet());
@@ -78,13 +82,13 @@ class Hifm {
 
 public class HifmTest {
     public static void main(String[] args) {
-        Model model = readModel("hifm-dataset.ttl", "TURTLE");
+        Model model = readModel("data/hifm-dataset.ttl", "TURTLE");
         Hifm.init(model);
 
         Hifm.printAllDrugs(model);
         Hifm.printAllRelations(model, Hifm.hifmDataPrefix + "975036");
-        Hifm.printSimilarDrugs(model, Hifm.hifmDataPrefix + "98167");
-        Hifm.printPriceAndPriceOfSimilar(model, Hifm.hifmDataPrefix + "98167");
+        Hifm.printSimilarDrugs(model, Hifm.hifmDataPrefix + "967483");
+        Hifm.printPriceAndPriceOfSimilar(model, Hifm.hifmDataPrefix + "967483");
     }
 
 }

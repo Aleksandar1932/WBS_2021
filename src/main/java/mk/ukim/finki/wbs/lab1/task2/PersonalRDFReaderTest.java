@@ -6,7 +6,7 @@ import static mk.ukim.finki.wbs.lab1.Utils.readModel;
 
 public class PersonalRDFReaderTest {
     public static void main(String[] args) {
-        Model model = readModel("D:\\projects\\WBS_2021\\aleksandarIvanovskiGraph.ttl", "TURTLE");
+        Model model = readModel("data/aleksandarIvanovskiGraph.ttl", "TURTLE");
 
         System.out.println("Printing model in TURTLE format");
         model.write(System.out, "TURTLE");

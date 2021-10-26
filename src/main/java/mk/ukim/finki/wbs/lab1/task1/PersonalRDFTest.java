@@ -62,6 +62,6 @@ public class PersonalRDFTest {
         PersonalRDF.printModel(model, "N-TRIPLES");
         PersonalRDF.printModel(model, "TURTLE");
 
-        PersonalRDF.writeModel(model, "aleksandarIvanovskiGraph");
+        PersonalRDF.writeModel(model, "data/aleksandarIvanovskiGraph");
     }
 }
