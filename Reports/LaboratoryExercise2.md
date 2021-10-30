@@ -1,4 +1,4 @@
-`# Laboratory Exercise 2
+# Laboratory Exercise 2
 
 ## Part 1:
 
