@@ -1,4 +1,4 @@
-package mk.ukim.finki.wbs.lab2.task1;
+package mk.ukim.finki.wbs.lab4.task1;
 
 import mk.ukim.finki.wbs.lab1.Utils;
 import org.apache.jena.rdf.model.*;
