@@ -1,0 +1,63 @@
+@base <https://ivanovski.tech/foaf.ttl> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix rel: <http://purl.org/vocab/relationship/> .
+
+
+<Me> a foaf:PersonalProfileDocument ;
+    foaf:maker <Me> ;
+    foaf:primaryTopic <Me> .
+
+<Me>
+  a foaf:Person ;
+  foaf:name "Aleksandar Ivanovski"@en ;
+  foaf:name "Александар Ивановски"@en ;
+  foaf:title "Mr" ;
+  foaf:givenname "Aleksandar" ;
+  foaf:family_name "Ivanovski" ;
+  foaf:nick "AI" ;
+  foaf:based_near [
+    a foaf:Place ;
+    geo:lat "42.4378" ;
+    geo:long "22.6427" ;
+    rdfs:label "Strumica, North Macedonia"@en ;
+    rdfs:label "Струмица, Северна Македонија"@mk ;
+    rdfs:seeAlso <https://dbpedia.org/page/Strumica_revolutionary_district> 
+  ] ;
+  foaf:mbox_sha1sum "5232cad2d259dcbb1cc274cfc69a09c487944167" ;
+  foaf:weblog <https://blog.ivanovski.tech> ; 
+  foaf:account <https://www.linkedin.com/in/ivanovskia/> ;
+  foaf:account <https://twitter.com/a_ivanovski19/> ;
+  foaf:homepage <https://ivanovski.tech> ;
+  foaf:depiction <https://avatars.githubusercontent.com/u/29300910?s=1080> ;
+  foaf:phone <tel:0038970273852> ;
+  foaf:workplaceHomepage <https://codechem.com/> ;
+  foaf:schoolHomepage <https://finki.ukim.mk/> ;
+  foaf:publications <https://scholar.google.com/citations?view_op=list_works&hl=en&user=-cvgeWQAAAAJ> ;
+  foaf:knows [
+    a foaf:Person ;
+    foaf:name "Ana Davcheva" ;
+    foaf:mbox_sha1sum "94c0dda476fccbcc3bc55fdfd7797c4058a3f7c1" ;
+    rel:colaborates_with <Me>
+  ], [
+    a foaf:Person ;
+    foaf:name "Viktorija Mijalcheva" ;
+    foaf:mbox_sha1sum "0d1a2f52a5120c2d4cfd1d0962ff29a2c9c7f3b5" ;
+    rel:colaborates_with <Me>
+  ], [
+    a foaf:Person ;
+    foaf:name "Vangel Hristov" ;
+    foaf:mbox_sha1sum "793000383e2bb6e4abeb137e6c112cb8bc533416"
+  ], [
+    a foaf:Person ;
+    foaf:name "Nikola Kanevche" ;
+    foaf:mbox_sha1sum "d64c2c8dbfbdcf95354f13cff2a7de4a572ced24"
+  ], [
+      a foaf:Person ;
+      foaf:name "Milosh Jovanovik" ;
+      rdfs:seeAlso <https://mjovanovik.com/foaf.ttl> ;
+      foaf:mbox_sha1sum "985593a51b7da1bc8bbe20bbdbd2baaa4df4b29b" ;
+      rel:apprenticeTo <Me>
+  ] .
