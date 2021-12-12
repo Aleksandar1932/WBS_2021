@@ -40,12 +40,14 @@
     a foaf:Person ;
     foaf:name "Ana Davcheva" ;
     foaf:mbox_sha1sum "94c0dda476fccbcc3bc55fdfd7797c4058a3f7c1" ;
+    rdfs:seeAlso <https://raw.githubusercontent.com/anadavcheva/my-foaf-project/master/foaf.ttl> ;
     rel:colaborates_with <Me>
   ], [
     a foaf:Person ;
     foaf:name "Viktorija Mijalcheva" ;
     foaf:mbox_sha1sum "0d1a2f52a5120c2d4cfd1d0962ff29a2c9c7f3b5" ;
-    rel:colaborates_with <Me>
+    rel:colaborates_with <Me> ;
+    rdfs:seeAlso <https://raw.githubusercontent.com/viktorijaMi/my-foaf-project/master/foaf.ttl>
   ], [
     a foaf:Person ;
     foaf:name "Vangel Hristov" ;
