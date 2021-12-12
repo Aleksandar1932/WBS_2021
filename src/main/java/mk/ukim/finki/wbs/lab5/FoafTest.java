@@ -2,7 +2,6 @@ package mk.ukim.finki.wbs.lab5;
 
 import mk.ukim.finki.wbs.lab1.Utils;
 import org.apache.jena.rdf.model.*;
-import org.apache.jena.tdb.store.Hash;
 
 import java.util.HashSet;
 import java.util.Set;
